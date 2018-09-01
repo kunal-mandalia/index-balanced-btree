@@ -59,7 +59,29 @@ describe('Index balanced binary (search) tree', () => {
   })
 
   describe('generateTree(inputArray, height)', () => {
-    it.skip('should return an index balanced binary search tree', () => {})
+    it('should return an index balanced binary search tree', () => {
+      // assign
+      const height = 3
+      const expectedResult = [
+        [
+          { arrayIndex: 0, data: { id: "001", name: "Alice"}},
+          { arrayIndex: 2, data: { id: "003", name: "Carl"}},
+          { arrayIndex: 4, data: { id: "005", name: "Eric"}},
+          { arrayIndex: 6, data: { id: "007", name: "Gary"}},
+        ],
+        [
+          { arrayIndex: 1, data: { id: "002", name: "Bob"}},
+          { arrayIndex: 5, data: { id: "006", name: "Frank"}},
+        ],
+        [
+          { arrayIndex: 3, data: { id: "004", name: "Dennis"}},
+        ]
+      ]
+      // act
+      const result = IndexBalancedBTree.generateTree(inputArray, 3)
+      // assert
+      expect(result).toMatchObject(expectedResult)
+    })
   })
 
   describe('rootNodeIndex()', () => {
