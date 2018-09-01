@@ -7,5 +7,9 @@
   "license": "MIT",
   "devDependencies": {
     "jest": "23.5.0"
+  },
+  "scripts": {
+    "test": "jest --watch",
+    "ci-test": "jest"
   }
 }
