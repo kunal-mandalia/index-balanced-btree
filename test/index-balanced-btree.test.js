@@ -75,23 +75,69 @@ describe('Index balanced binary (search) tree', () => {
       // assert
       expect(result).toMatchObject(expectedResult)
     })
+
+    it('should set the active node index to the root node', () => {
+      // assign
+      const expectedResult = { row: 2, col: 0 }
+      // act
+      // assert
+      expect(tree.index).toEqual(expectedResult)
+    })
   })
 
-  describe('rootNodeIndex()', () => {
-    it.skip('should return the index {row, column} position of root node', () => {})
+  describe('getRootIndex()', () => {
+    it('should return the index {row, column} position of root node', () => {
+      // assign
+      const expectedResult = { row: 2, col: 0 }
+      // act
+      const result = tree.getRootIndex()
+      // assert
+      expect(result).toEqual(expectedResult)
+    })
   })
 
-  describe('cursor(index)', () => {
-    it.skip('should set active node', () => {})
+  describe('setIndex()', () => {
+    it('should set active node', () => {
+      // assign
+      const expectedResult = { row: 1, col: 1 }
+      // act
+      tree.setIndex(expectedResult)
+      // assert
+      expect(tree.index).toEqual(expectedResult)
+    })
   })
 
-  describe('parentNodeIndex()', () => {
-    it.skip('should return the index of parent node if it exists', () => {})
+  describe('getParentIndex()', () => {
+    it('should return the index of parent node if it exists', () => {
+      // assign
+      const initialNode = { row: 0, col: 2 }
+      const expectedResult = { row: 1, col: 1 }
+      // act
+      tree.setIndex(initialNode)
+      const parentIndex = tree.getParentIndex()
+      // assert
+      expect(parentIndex).toEqual(expectedResult)
+    })
   })
 
-  describe('childNodeIndex(direction)', () => {
-    it.skip('should return left child node index', () => {})
-    it.skip('should return right child node index', () => {})
+  describe('getChildIndex(direction)', () => {
+    it('should return left child node index', () => {
+      // assign
+      const expectedResult = { row: 1, col: 0 }
+      // act
+      const leftChild = tree.getChildIndex("left")
+      // assert
+      expect(leftChild).toEqual(expectedResult)
+    })
+
+    it('should return right child node index', () => {
+      // assign
+      const expectedResult = { row: 1, col: 1 }
+      // act
+      const rightChild = tree.getChildIndex("right")
+      // assert
+      expect(rightChild).toEqual(expectedResult)
+    })
   })
 
   describe('print(tree, log)', () => {

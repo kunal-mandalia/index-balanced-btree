@@ -77,6 +77,7 @@ class IndexBalancedBTree {
     this.input = inputArray
     this.height = this.getHeight(inputArray.length)
     this.tree = IndexBalancedBTree.generateTree(this.input, this.height)
+    this.index = this.getRootIndex()
   }
 
   /**
@@ -93,6 +94,46 @@ class IndexBalancedBTree {
         return height
       }
     }
+  }
+
+  setIndex(nodeIndex) {
+    this.index = nodeIndex
+  }
+  
+  getRootIndex() {
+    return { row: this.height - 1, col: 0 }
+  }
+
+  getParentIndex() {
+    let row, col
+    const noParent = this.index.row >= this.height
+    if (noParent) {
+      throw new Error(`Parent of node ${JSON.stringify(this.index)} does not exist`)
+    }
+
+    row = this.index.row + 1
+    col = Math.ceil((this.index.col - 1) / 2)
+    return { row, col }
+  }
+
+  /**
+   * 
+   * @param {String} direction "left", "right"
+   * @returns {Object} { row: integer, col: integer }
+   */
+  getChildIndex(direction) {
+    let row, col
+    const noChild = this.index.row === 0
+    if (noChild) {
+      throw new Error(`Child of node ${JSON.stringify(this.index)} does not exist`)
+    }
+
+    row = this.index.row - 1
+    col = direction === "left" ?
+      (2 * this.index.col) :
+      (2 * this.index.col) + 1
+
+    return { row, col }
   }
 }
 
