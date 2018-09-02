@@ -12,16 +12,24 @@ This project shows how to formulaically generate a perfectly balanced BST given 
 ## Get started
 
 * Install: `yarn add index-balanced-btree`
-* Import: `const Tree = require('index-balanced-btree')`
-* Initialise a new tree: `const myTree = new Tree([ { id: '001', name: 'Andy' }, ... ])`
-* Log the tree! Tree.print(myTree.tree)
-```
-   3
- 1   5
-0 2 4 6
-```
+* Initialise and use a new tree:
+```js
+  const Tree = require('index-balanced-btree')
 
+  const sortedRecords = ["Andy", "Brie", "Carl", "Dennis", "Ed", "Fran", "Gary"]
+  const myTree = new Tree(sortedRecords)
+
+  // Get child node index
+  const leftChild = myTree.getChildIndex("left") // { row: 1, col: 0 }
+
+  // Log the tree!
+  Tree.print(myTree.tree)
+
+     3
+   1   5
+  0 2 4 6
+```
 
 ## Limitations
 
-The index balanced BST data structure is less efficient than the sorted array for searching. Insertion and deletion algorithms are yet to be developed, but even so they won't compare to AVL / red black trees.
+The benefit of index balanced BST over existing data structures (arrays, self balancing trees; AVL, Red/Black) lies in being able to jump to a node without having to traverse intermediate nodes. Practically however this data structure is less efficient than a sorted array for searching and doesn't have insertion / deletion algorithms.
