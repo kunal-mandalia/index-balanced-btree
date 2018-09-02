@@ -9,6 +9,19 @@ Using this approach, given a sorted array the BST will be lopsided since subsequ
 
 This project shows how to formulaically generate a perfectly balanced BST given a sorted array as input.
 
+## Get started
+
+* Install: `yarn add index-balanced-btree`
+* Import: `const Tree = require('index-balanced-btree')`
+* Initialise a new tree: `const myTree = new Tree([ { id: '001', name: 'Andy' }, ... ])`
+* Log the tree! Tree.print(myTree.tree)
+```
+   3
+ 1   5
+0 2 4 6
+```
+
+
 ## Limitations
 
 The index balanced BST data structure is less efficient than the sorted array for searching. Insertion and deletion algorithms are yet to be developed, but even so they won't compare to AVL / red black trees.
