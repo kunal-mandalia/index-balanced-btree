@@ -2,21 +2,14 @@ const {
   IndexBalancedBTree,
   getDivisibleMultiples
 } = require('../src/index-balanced-btree.js')
+const sortedArrays = require('../test/__fixtures__/sortedArrays.js')
+const treeLogs = require('../test/__fixtures__/treeLogs')
 
 describe('Index balanced binary (search) tree', () => {
   let tree
-  const inputArray = [
-    { id: "001", name: "Alice"},
-    { id: "002", name: "Bob"},
-    { id: "003", name: "Carl"},
-    { id: "004", name: "Dennis"},
-    { id: "005", name: "Eric"},
-    { id: "006", name: "Frank"},
-    { id: "007", name: "Gary"},
-  ]
 
   beforeEach(() => {
-    tree = new IndexBalancedBTree(inputArray)
+    tree = new IndexBalancedBTree(sortedArrays.sortedArray6)
   })
 
   describe('getHeight(N)', () => {
@@ -78,7 +71,7 @@ describe('Index balanced binary (search) tree', () => {
         ]
       ]
       // act
-      const result = IndexBalancedBTree.generateTree(inputArray, 3)
+      const result = IndexBalancedBTree.generateTree(sortedArrays.sortedArray7, 3)
       // assert
       expect(result).toMatchObject(expectedResult)
     })
@@ -100,9 +93,33 @@ describe('Index balanced binary (search) tree', () => {
     it.skip('should return left child node index', () => {})
     it.skip('should return right child node index', () => {})
   })
+
+  describe('print(tree, log)', () => {
+    let mockConsole = jest.fn()
+    afterEach(() => {
+      mockConsole.mockClear()
+    })
+
+    const cases = [
+      { inputArray: sortedArrays.sortedArray2, expectedResult: treeLogs.tree2 },
+      { inputArray: sortedArrays.sortedArray6, expectedResult: treeLogs.tree6 },
+      { inputArray: sortedArrays.sortedArray7, expectedResult: treeLogs.tree7 },
+      { inputArray: sortedArrays.sortedArray10, expectedResult: treeLogs.tree10 }
+    ]
+
+    cases.forEach((c, i) => {
+      it(`it should return correct tree log for case ${i}`, () => {
+        // assign
+        const { tree } = new IndexBalancedBTree(c.inputArray)
+        IndexBalancedBTree.print(tree, mockConsole)
+        // assert
+        expect(mockConsole).toBeCalledWith(c.expectedResult)
+      })
+    })
+  })
 })
 
-describe('getDivisibleMultiples(n,m)', () => {
+describe('getDivisibleMultiples(n, m)', () => {
   // assign
   const cases = [
     { n: 4, m: 2, expectedResult: 2 },

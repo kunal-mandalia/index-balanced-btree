@@ -55,6 +55,24 @@ class IndexBalancedBTree {
     return { row, col }
   }
 
+  static print(tree, log = console.log) {
+    let output = ``;
+    const getLeftIndentation = rowIndex => Array(Math.pow(2, rowIndex-1)).join(' ')
+    const getGapSizeBetweenNodes = rowIndex => Array(Math.pow(2, rowIndex)).join(' ')
+
+    for (let rowIndex=tree.length; rowIndex > 0; rowIndex--) {
+      const leftIndent = getLeftIndentation(rowIndex)
+      const gap = getGapSizeBetweenNodes(rowIndex)
+      const nodes = tree[rowIndex-1]
+        .filter(node => Number.isInteger(node.arrayIndex))
+        .map(node => node.arrayIndex).join(gap)
+
+      const row = `${leftIndent}${nodes}`
+      output = `${output}\n${row}`
+    }
+    log(output)
+  }
+
   constructor (inputArray = []) {
     this.input = inputArray
     this.height = this.getHeight(inputArray.length)
