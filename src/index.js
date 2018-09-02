@@ -1,3 +1,3 @@
-const IndexBalancedBTree = require('./index-balanced-btree')
+const { IndexBalancedBTree } = require('./index-balanced-btree')
 
 module.exports = IndexBalancedBTree
