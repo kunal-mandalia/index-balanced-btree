@@ -106,10 +106,9 @@ class IndexBalancedBTree {
 
   getParentIndex() {
     let row, col
-    const noParent = this.index.row >= this.height
-    if (noParent) {
-      throw new Error(`Parent of node ${JSON.stringify(this.index)} does not exist`)
-    }
+    const noParent = this.index.row + 1 >= this.height
+
+    if (noParent) return null
 
     row = this.index.row + 1
     col = Math.ceil((this.index.col - 1) / 2)
@@ -124,9 +123,8 @@ class IndexBalancedBTree {
   getChildIndex(direction) {
     let row, col
     const noChild = this.index.row === 0
-    if (noChild) {
-      throw new Error(`Child of node ${JSON.stringify(this.index)} does not exist`)
-    }
+    
+    if (noChild) return null
 
     row = this.index.row - 1
     col = direction === "left" ?
