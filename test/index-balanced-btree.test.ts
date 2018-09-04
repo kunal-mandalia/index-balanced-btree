@@ -1,4 +1,4 @@
-import IndexBalancedBTree from '../src/index-balanced-btree'
+import { IndexBalancedBTree } from '../src/index-balanced-btree'
 import sortedArrays from '../test/__fixtures__/sortedArrays';
 import treeLogs from '../test/__fixtures__/treeLogs';
 
