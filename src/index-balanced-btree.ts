@@ -5,9 +5,13 @@ import {
   TreeRow,
   INodeIndex
 } from './types'
-import { getDivisibleMultiples } from './helper'
 
-class IndexBalancedBTree {
+import {
+  isInteger,
+  getDivisibleMultiples
+} from './helper'
+
+export class IndexBalancedBTree {
   public input : InputArray
   public height : number
   public tree : Tree
@@ -50,7 +54,7 @@ class IndexBalancedBTree {
       const leftIndent = getLeftIndentation(rowIndex)
       const gap = getGapSizeBetweenNodes(rowIndex)
       const nodes = tree[rowIndex-1]
-        .filter(node => Number.isInteger(node.arrayIndex))
+        .filter(node => isInteger(node.arrayIndex))
         .map(node => node.arrayIndex).join(gap)
 
       const row = `${leftIndent}${nodes}`
@@ -116,5 +120,3 @@ class IndexBalancedBTree {
     return { row, col }
   }
 }
-
-export default IndexBalancedBTree
