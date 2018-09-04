@@ -14,7 +14,7 @@ This project shows how to formulaically generate a perfectly balanced BST given 
 * Install: `yarn add index-balanced-btree`
 * Initialise and use a new tree:
 ```js
-  const Tree = require('index-balanced-btree')
+  const Tree = require('index-balanced-btree').IndexBalancedBTree
 
   const sortedRecords = ["Andy", "Brie", "Carl", "Dennis", "Ed", "Fran", "Gary"]
   const myTree = new Tree(sortedRecords)
