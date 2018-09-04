@@ -16,3 +16,10 @@ function getDivisibleMultiples(n, m) {
     }
 }
 exports.getDivisibleMultiples = getDivisibleMultiples;
+function isInteger(value) {
+    return typeof value === 'number' &&
+        isFinite(value) &&
+        Math.floor(value) === value;
+}
+exports.isInteger = isInteger;
+;

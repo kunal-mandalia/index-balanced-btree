@@ -3,21 +3,12 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var helper_1 = require("./helper");
 var IndexBalancedBTree = /** @class */ (function () {
     function IndexBalancedBTree(inputArray) {
-        if (inputArray === void 0) { inputArray = []; }
         this.input = inputArray;
         this.height = this.getHeight(inputArray.length);
         this.tree = IndexBalancedBTree.generateTree(this.input, this.height);
         this.index = this.getRootIndex();
     }
-    /**
-     *
-     * @param {Array} inputArray
-     * @param {Number} height : integer
-     * @returns {Array} array of array
-     */
     IndexBalancedBTree.generateTree = function (inputArray, height) {
-        if (inputArray === void 0) { inputArray = []; }
-        if (height === void 0) { height = 0; }
         var tree = [];
         for (var h = height; h > 0; h--) {
             var maximumElementsInRank = Math.pow(2, h - 1);
@@ -35,13 +26,8 @@ var IndexBalancedBTree = /** @class */ (function () {
     /**
      * Obtains the row and col index based on the solution
      * of the equation T(row, col) = (2^row)(2col + 1) - 1 = arrayIndex
-     *
-     * @param {Number} arrayIndex zero based index
-     * position of element in input array
-     * @returns {Number} integer
      */
     IndexBalancedBTree.getTreeIndexByArrayIndex = function (arrayIndex) {
-        if (arrayIndex === void 0) { arrayIndex = 0; }
         var row = helper_1.getDivisibleMultiples(arrayIndex + 1, 2);
         var col = (((arrayIndex + 1) / Math.pow(2, row)) - 1) / 2;
         return { row: row, col: col };
@@ -55,21 +41,17 @@ var IndexBalancedBTree = /** @class */ (function () {
             var leftIndent = getLeftIndentation(rowIndex);
             var gap = getGapSizeBetweenNodes(rowIndex);
             var nodes = tree[rowIndex - 1]
-                .filter(function (node) { return Number.isInteger(node.arrayIndex); })
+                .filter(function (node) { return helper_1.isInteger(node.arrayIndex); })
                 .map(function (node) { return node.arrayIndex; }).join(gap);
             var row = "" + leftIndent + nodes;
             output = output + "\n" + row;
         }
         log(output);
     };
-    /**
-     *
-     * @param {Number} N integer. Total nodes.
-     */
-    IndexBalancedBTree.prototype.getHeight = function (N) {
+    IndexBalancedBTree.prototype.getHeight = function (numNodes) {
         var height = 0;
         while (true) {
-            if (N >= Math.pow(2, height)) {
+            if (numNodes >= Math.pow(2, height)) {
                 height += 1;
             }
             else {
@@ -110,4 +92,4 @@ var IndexBalancedBTree = /** @class */ (function () {
     };
     return IndexBalancedBTree;
 }());
-exports.default = IndexBalancedBTree;
+exports.IndexBalancedBTree = IndexBalancedBTree;

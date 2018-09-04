@@ -11,3 +11,9 @@ export function getDivisibleMultiples(n = 0, m = 0) {
     }
   }
 }
+
+export function isInteger (value) {
+  return typeof value === 'number' && 
+    isFinite(value) && 
+    Math.floor(value) === value;
+};
