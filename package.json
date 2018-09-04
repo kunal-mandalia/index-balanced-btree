@@ -1,15 +1,38 @@
 {
   "name": "index-balanced-btree",
-  "version": "1.0.3",
-  "main": "src/index.js",
+  "version": "1.1.0",
+  "main": "dist/index.js",
   "repository": "https://github.com/kunal-mandalia/index-balanced-btree.git",
   "author": "Kunal Mandalia <kunal.v.mandalia@gmail.com> (http://kunalmandalia.com/)",
   "license": "MIT",
   "devDependencies": {
-    "jest": "23.5.0"
+    "@types/jest": "23.3.1",
+    "jest": "23.5.0",
+    "ts-jest": "23.1.4"
   },
   "scripts": {
     "test": "jest --watch",
     "ci-test": "jest"
+  },
+  "jest": {
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js"
+    ],
+    "transform": {
+      "^.+\\.(ts|tsx)$": "ts-jest"
+    },
+    "globals": {
+      "ts-jest": {
+        "tsConfigFile": "tsconfig.json"
+      }
+    },
+    "testMatch": [
+      "**/test/*.+(ts|tsx|js)"
+    ]
+  },
+  "dependencies": {
+    "typescript": "3.0.3"
   }
 }
