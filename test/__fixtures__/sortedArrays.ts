@@ -35,7 +35,7 @@ const sortedArray10 = [
   { id: "0010", name: "James"},
 ]
 
-module.exports = {
+export default {
   sortedArray2,
   sortedArray6,
   sortedArray7,
