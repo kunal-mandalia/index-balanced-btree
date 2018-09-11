@@ -13,3 +13,8 @@ export interface INodeIndex {
   row: number,
   col: number
 }
+
+export enum Direction {
+  Left = 1,
+  Right = 2
+}

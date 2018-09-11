@@ -1,6 +1,7 @@
 import { IndexBalancedBTree } from '../src/index-balanced-btree'
 import sortedArrays from '../test/__fixtures__/sortedArrays';
 import treeLogs from '../test/__fixtures__/treeLogs';
+import { Direction } from '../src/types'
 
 describe('Index balanced binary (search) tree', () => {
   let tree
@@ -122,7 +123,7 @@ describe('Index balanced binary (search) tree', () => {
       // assign
       const expectedResult = { row: 1, col: 0 }
       // act
-      const leftChild = tree.getChildIndex("left")
+      const leftChild = tree.getChildIndex(Direction.Left)
       // assert
       expect(leftChild).toEqual(expectedResult)
     })
@@ -131,7 +132,7 @@ describe('Index balanced binary (search) tree', () => {
       // assign
       const expectedResult = { row: 1, col: 1 }
       // act
-      const rightChild = tree.getChildIndex("right")
+      const rightChild = tree.getChildIndex(Direction.Right)
       // assert
       expect(rightChild).toEqual(expectedResult)
     })

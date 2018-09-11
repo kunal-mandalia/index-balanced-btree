@@ -1,9 +1,8 @@
 import {
   InputArray,
   Tree,
-  TreeItem,
-  TreeRow,
-  INodeIndex
+  INodeIndex,
+  Direction
 } from './types'
 
 import {
@@ -90,7 +89,7 @@ export class IndexBalancedBTree {
     return { row: this.height - 1, col: 0 }
   }
 
-  getParentIndex() : INodeIndex {
+  getParentIndex() : INodeIndex | null {
     let row, col
     const noParent = this.index.row + 1 >= this.height
 
@@ -101,19 +100,14 @@ export class IndexBalancedBTree {
     return { row, col }
   }
 
-  /**
-   * 
-   * @param {String} direction "left", "right"
-   * @returns {Object} { row: integer, col: integer }
-   */
-  getChildIndex(direction: string) : INodeIndex {
+  getChildIndex(direction: Direction) : INodeIndex | null {
     let row, col
     const noChild = this.index.row === 0
 
     if (noChild) return null
 
     row = this.index.row - 1
-    col = direction === "left" ?
+    col = direction === Direction.Left ?
       (2 * this.index.col) :
       (2 * this.index.col) + 1
 
