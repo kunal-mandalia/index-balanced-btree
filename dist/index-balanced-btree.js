@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+var types_1 = require("./types");
 var helper_1 = require("./helper");
 var IndexBalancedBTree = /** @class */ (function () {
     function IndexBalancedBTree(inputArray) {
@@ -74,18 +75,13 @@ var IndexBalancedBTree = /** @class */ (function () {
         col = Math.ceil((this.index.col - 1) / 2);
         return { row: row, col: col };
     };
-    /**
-     *
-     * @param {String} direction "left", "right"
-     * @returns {Object} { row: integer, col: integer }
-     */
     IndexBalancedBTree.prototype.getChildIndex = function (direction) {
         var row, col;
         var noChild = this.index.row === 0;
         if (noChild)
             return null;
         row = this.index.row - 1;
-        col = direction === "left" ?
+        col = direction === types_1.Direction.Left ?
             (2 * this.index.col) :
             (2 * this.index.col) + 1;
         return { row: row, col: col };
